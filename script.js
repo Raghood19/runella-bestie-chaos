@@ -37,36 +37,28 @@ const questions = {
 
 const punishments = {
   en: [
-    ["🎬", "ACT IT", "Act out a dramatic movie or series scene for 30 seconds. Everyone has to guess it.", null],
-    ["💃", "DANCE", "Pick a song and dance to it dramatically for 20 seconds.", null],
+    ["💃", "DANCE CHALLENGE 1", "Imitate this dance move exactly!", "videos/video1.mp4"],
+    ["💃", "DANCE CHALLENGE 2", "Do this dance challenge for 15 seconds!", "videos/video2.mp4"],
+    ["💃", "DANCE CHALLENGE 3", "Recreate this video move with full energy!", "videos/video3.mp4"],
+    ["🎬", "ACT IT", "Act out a dramatic movie scene for 30 seconds. Everyone has to guess it.", null],
     ["🎤", "SING IT", "Sing any song like you are performing at a huge concert.", null],
     ["😂", "IMPERSONATE", "Imitate someone in the group until they guess who you are.", null],
     ["🎭", "DRAMA", "Pretend you are crying because someone ate the last slice of pizza.", null],
     ["🗣️", "ACCENT", "Speak in a different accent for one full minute.", null],
     ["📱", "PHONE CHALLENGE", "Show the group your last saved photo — if you're comfortable.", null],
-    ["💌", "LOVE LETTER", "Make up a dramatic love confession using a random word chosen by the group.", null],
-    ["🕺", "FREEZE", "Dance for 15 seconds. When someone says FREEZE, stop instantly.", null],
-    ["🎬", "DIRECTOR", "Choose two people and direct them in a ridiculous romantic scene.", null],
-    ["💃", "DANCE CHALLENGE", "Imitate this dance scene from the video exactly!", "https://www.youtube.com/embed/4dboqU3brw8"],
-    ["💃", "DANCE CHALLENGE", "Do this funny dance reaction for 15 seconds!", "https://www.youtube.com/embed/4XZjXUolK_Y"],
-    ["💃", "DANCE CHALLENGE", "Recreate this weird dance move!", "https://www.youtube.com/embed/xuHjnJ9f6tk"],
-    ["💃", "DANCE CHALLENGE", "Dance to this video with full drama!", "https://www.youtube.com/embed/aCexa1lRE3Q"]
+    ["💌", "LOVE LETTER", "Make up a dramatic love confession using a random word chosen by the group.", null]
   ],
   ar: [
+    ["💃", "تحدي رقص 1", "قلدي الحركة اللي في الفيديو ده بالضبط!", "videos/video1.mp4"],
+    ["💃", "تحدي رقص 2", "قلدي تحدي الرقص ده لمدة 15 ثانية!", "videos/video2.mp4"],
+    ["💃", "تحدي رقص 3", "قلدي الحركة دي بكل طاقة وانفعال!", "videos/video3.mp4"],
     ["🎬", "مثّليها", "قلدي مشهد درامي من فيلم أو مسلسل لمدة 30 ثانية والباقي يخمنوا المشهد.", null],
-    ["💃", "ارقصي", "اختاري أغنية وارقصي عليها بأقصى دراما لمدة 20 ثانية.", null],
     ["🎤", "غنّيها", "غني أي أغنية كأنك بتغني في حفلة قدام آلاف الناس.", null],
     ["😂", "قلّدي حد", "قلدي واحدة من الشلة لحد ما يعرفوا إنك بتقلدي مين.", null],
     ["🎭", "دراما", "مثلي إنك بتعيطي عشان حد أكل آخر قطعة بيتزا.", null],
     ["🗣️", "لهجة مختلفة", "اتكلمي بلهجة مختلفة لمدة دقيقة كاملة.", null],
     ["📱", "Challenge الموبايل", "وري الشلة آخر صورة محفوظة عندك — لو إنتِ مرتاحة لكده.", null],
-    ["💌", "رسالة حب", "اعملي اعتراف حب درامي باستخدام كلمة تختارها الشلة.", null],
-    ["🕺", "Freeze", "ارقصي 15 ثانية، ولما حد يقول FREEZE اثبتي فورًا.", null],
-    ["🎬", "المخرجة", "اختاري اتنين من الشلة وخليهم يمثلوا مشهد رومانسي مضحك.", null],
-    ["💃", "تحدي الدبكة", "قلدي حركة الدبكة اللي في الفيديو ده بالضبط!", "https://www.youtube.com/embed/4dboqU3brw8"],
-    ["💃", "تحدي الرقص", "قلدي الرياكشن والرقصة الكوميدية دي لمدة 15 ثانية!", "https://www.youtube.com/embed/4XZjXUolK_Y"],
-    ["💃", "تحدي رقصة غريبة", "قلدي الحركات الغريبة والمضحكة اللي في الفيديو ده!", "https://www.youtube.com/embed/xuHjnJ9f6tk"],
-    ["💃", "ارقصي بسرعة", "قلدي رقصة الفيديو ده بكل طاقة وانفعال!", "https://www.youtube.com/embed/aCexa1lRE3Q"]
+    ["💌", "رسالة حب", "اعملي اعتراف حب درامي باستخدام كلمة تختارها الشلة.", null]
   ]
 };
 
@@ -122,13 +114,13 @@ function getPunishment() {
 
   const videoUrl = p[3];
   const videoContainer = $("videoContainer");
-  const iframe = $("punishmentVideo");
+  const videoPlayer = $("punishmentVideo");
 
   if (videoUrl) {
-    iframe.src = videoUrl;
+    videoPlayer.src = videoUrl;
     videoContainer.classList.remove("hidden");
   } else {
-    iframe.src = "";
+    videoPlayer.src = "";
     videoContainer.classList.add("hidden");
   }
 
@@ -136,7 +128,11 @@ function getPunishment() {
 }
 
 function nextRound() {
-  $("punishmentVideo").src = "";
+  const videoPlayer = $("punishmentVideo");
+  if (videoPlayer) {
+    videoPlayer.pause();
+    videoPlayer.src = "";
+  }
   index++;
   if (index >= 40) {
     $("endTitle").textContent = lang === "en" ? "BESTIE CHAOS COMPLETE!" : "خلصتوا فوضى الصحاب! 🎀";
@@ -159,8 +155,8 @@ function toggleLanguage() {
     ? "The game that exposes your whole friend group 😂"
     : "اللعبة اللي هتكشف الشلة كلها 😂";
   $("meta").textContent = lang === "en"
-    ? "2–10 players • No printing • Play on your phone"
-    : "٢–١٠ لاعبين • من غير طباعة • العبوا من الموبايل";
+    ? "2–10 players • Offline Ready • Play on your phone"
+    : "٢–١٠ لاعبين • شغال بدون نت • العبوا من الموبايل";
   $("revealBtn").textContent = lang === "en" ? "REVEAL" : "اكشفوا النتيجة";
   $("nextBtn").textContent = lang === "en" ? "NEXT ROUND →" : "الجولة الجاية ←";
   $("punishmentBtn").textContent = lang === "en" ? "SEE PUNISHMENT 🎡" : "شوفوا العقاب 🎡";
