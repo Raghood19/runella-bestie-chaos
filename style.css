@@ -153,7 +153,18 @@ button:active { transform: translateY(0); }
 .hidden { display: none !important; }
 
 #punishment .category { margin-top: 8px; }
-#punishmentText { max-width: 380px; margin: 8px auto 28px; font-size: 18px; }
+#punishmentText { max-width: 380px; margin: 8px auto 16px; font-size: 18px; }
+
+.video-container {
+  margin: 10px 0 20px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(109, 67, 84, 0.15);
+}
+.video-container iframe {
+  display: block;
+  border-radius: 20px;
+}
 
 [dir="rtl"] { direction: rtl; }
 [dir="rtl"] .topbar { direction: rtl; }
