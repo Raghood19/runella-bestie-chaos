@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7dce7">
+  <title>Runella — Bestie Chaos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <button id="langBtn" class="lang-btn">عربي</button>
+
+    <section id="home" class="screen active">
+      <div class="brand">RUNELLA</div>
+      <div class="bow">🎀</div>
+      <h1 data-en="BESTIE CHAOS" data-ar="فوضى الصحاب">BESTIE CHAOS</h1>
+      <p id="tagline">The game that exposes your whole friend group 😂</p>
+      <button id="startBtn" class="primary">START GAME</button>
+      <p class="tiny" id="meta">2–10 players • No printing • Play on your phone</p>
+    </section>
+
+    <section id="game" class="screen">
+      <div class="topbar">
+        <span id="roundLabel">ROUND 1</span>
+        <span id="progress">1 / 40</span>
+      </div>
+
+      <div id="card" class="card">
+        <div id="category" class="category">WHO'S MOST LIKELY?</div>
+        <h2 id="question">Question</h2>
+        <div id="instruction" class="instruction">Everyone points at someone. Count to 3!</div>
+      </div>
+
+      <div id="revealBox" class="reveal hidden">
+        <div class="reveal-title" id="revealTitle">THE GROUP HAS SPOKEN 😂</div>
+        <p id="revealText">The person with the most votes gets a punishment!</p>
+        <button id="punishmentBtn" class="secondary">GET PUNISHMENT 🎡</button>
+      </div>
+
+      <div id="actions" class="actions">
+        <button id="revealBtn" class="primary">REVEAL</button>
+        <button id="nextBtn" class="secondary hidden">NEXT ROUND →</button>
+      </div>
+    </section>
+
+    <section id="punishment" class="screen">
+      <div class="brand small">RUNELLA</div>
+      <div class="emoji" id="punishmentEmoji">🎬</div>
+      <div class="category" id="punishmentType">ACT IT</div>
+      <h2 id="punishmentTitle">Your punishment!</h2>
+      <p id="punishmentText">Act out a dramatic movie scene for 30 seconds.</p>
+      <button id="doneBtn" class="primary">DONE — NEXT ROUND</button>
+    </section>
+
+    <section id="end" class="screen">
+      <div class="brand">RUNELLA</div>
+      <div class="emoji">👑</div>
+      <h1 id="endTitle">BESTIE CHAOS COMPLETE!</h1>
+      <p id="endText">That group chat is never going to recover 😂</p>
+      <button id="restartBtn" class="primary">PLAY AGAIN</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
